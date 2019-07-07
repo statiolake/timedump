@@ -18,13 +18,13 @@ fn main() {
         .expect("Please specify a command or what you did.");
 
     match &*command {
-        "add" => add(&env::args().nth(2).expect("Please specify what you did.")),
+        "dump" => dump(&env::args().nth(2).expect("Please specify what you did.")),
         "show" => show(),
-        did => add(did),
+        did => dump(did),
     }
 }
 
-fn add(did: &str) {
+fn dump(did: &str) {
     assert!(
         !did.contains(','),
         "You cannot include ',' to what you did."
