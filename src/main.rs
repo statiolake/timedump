@@ -6,9 +6,10 @@ use std::io::prelude::*;
 use std::path::PathBuf;
 
 fn save_path() -> PathBuf {
-    env::current_exe()
-        .expect("Failed to get current exe's path.")
-        .with_file_name("did.txt")
+    let mut path = dirs::home_dir().expect("Failed to get homedir.");
+    path.push("cabinet");
+    path.push("timedump.txt");
+    path
 }
 
 fn main() {
