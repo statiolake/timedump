@@ -11,7 +11,17 @@ fn save_path() -> PathBuf {
 }
 
 fn main() {
-    let did = env::args().nth(1).expect("Please specify what you did.");
+    let command = env::args()
+        .nth(1)
+        .expect("Please specify a command or what you did.");
+
+    match &*command {
+        "add" => add(&env::args().nth(2).expect("Please specify what you did.")),
+        did => add(did),
+    }
+}
+
+fn add(did: &str) {
     assert!(
         !did.contains(','),
         "You cannot include ',' to what you did."
